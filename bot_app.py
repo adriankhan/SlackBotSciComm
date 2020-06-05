@@ -80,7 +80,7 @@ def slash():
 
     payload = {'text': 'SciComm Bot slash command received.'}
     
-    return Response(jsonify(payload),status=200)
+    return jsonify(payload), 200
 
 # Only run the server if this file is being run as the main file, not as a module.
 
