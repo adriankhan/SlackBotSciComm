@@ -74,9 +74,9 @@ def error_handler(err):
 
 # Decorator and function to route slash commands outside of the events API adapter.
 
-@scicommbot.route('/slash')
+@app.route('/slash')
 def slash():
-    pass
+    print("This worked.")
 
 # Only run the server if this file is being run as the main file, not as a module.
 
