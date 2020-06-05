@@ -1,2 +1,4 @@
 slackeventsapi
 slackclient
+gunicorn
+flask

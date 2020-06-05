@@ -1,17 +1,24 @@
 import os
 from slackeventsapi import SlackEventAdapter
 from slack import WebClient
+from flask import Flask
+
+app = Flask(__name__)
 
 SLACK_SIGNING_SECRET = os.environ["SLACK_SIGNING_SECRET"]
 SLACK_BOT_TOKEN = os.environ["SLACK_BOT_TOKEN"]
 
-slack_events_adapter = SlackEventAdapter(SLACK_SIGNING_SECRET, endpoint="/slack/events")
+slack_events_adapter = SlackEventAdapter(SLACK_SIGNING_SECRET, endpoint="/slack/events", app)
 slack_client = WebClient(SLACK_BOT_TOKEN, timeout=30)
 
 # Message block generator
 def msg_block():
 
     '''Implemented later'''
+
+    channel =
+    message =
+    
     # Not yet implemented
     pass
 
@@ -59,11 +66,20 @@ def reg_message(event_data):
     slack_client.chat_postMessage(channel=channel,text="This is a test message.")
 
     
-# Catch error events with the event listener
+# Catch error events with the API listener
+
 @slack_events_adapter.on("error")
 def error_handler(err):
     print("ERROR: " + str(err))
 
+
+    pass
+
+# Decorator and function to route slash commands outside of the events API adapter.
+
+@scicommbot.route('/slash')
+def slash():
+    pass
 
 # Only run the server if this file is being run as the main file, not as a module.
 
@@ -74,4 +90,5 @@ if __name__ == "__main__":
 
     # Heroku dynamically sets $PORT, which can be called via an environmental variable
     port = int(os.environ.get('PORT', 5000))
-    slack_events_adapter.start(host='0.0.0.0', port=port)
+    app.run(port=port)
+    # slack_events_adapter.start(host='0.0.0.0', port=port)
