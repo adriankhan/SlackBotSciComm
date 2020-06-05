@@ -1,7 +1,7 @@
 import os
 from slackeventsapi import SlackEventAdapter
 from slack import WebClient
-from flask import Flask, jsonify
+from flask import Flask, jsonify, Response
 
 app = Flask(__name__)
 
@@ -74,11 +74,13 @@ def error_handler(err):
 
 # Decorator and function to route slash commands outside of the events API adapter.
 
-@app.route('/slash')
+@app.route('/slash', methods=['POST'])
 def slash():
     print("This worked.")
+
     payload = {'text': 'SciComm Bot slash command received.'}
-    return jsonify(payload)
+    
+    return Response(jsonify(payload),status=200)
 
 # Only run the server if this file is being run as the main file, not as a module.
 
