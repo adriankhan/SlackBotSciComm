@@ -8,14 +8,14 @@ app = Flask(__name__)
 SLACK_SIGNING_SECRET = os.environ["SLACK_SIGNING_SECRET"]
 SLACK_BOT_TOKEN = os.environ["SLACK_BOT_TOKEN"]
 
-slack_events_adapter = SlackEventAdapter(SLACK_SIGNING_SECRET, endpoint="/slack/events", app)
+slack_events_adapter = SlackEventAdapter(SLACK_SIGNING_SECRET, "/slack/events", app)
 slack_client = WebClient(SLACK_BOT_TOKEN, timeout=30)
 
 # Message block generator
 def msg_block():
 
     '''Implemented later'''
-        
+
     # Not yet implemented
     pass
 
