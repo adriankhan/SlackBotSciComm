@@ -15,10 +15,7 @@ slack_client = WebClient(SLACK_BOT_TOKEN, timeout=30)
 def msg_block():
 
     '''Implemented later'''
-
-    channel =
-    message =
-    
+        
     # Not yet implemented
     pass
 
